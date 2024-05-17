@@ -1,0 +1,54 @@
+logging:
+  level:
+    root: INFO
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+  forward-headers-strategy: framework
+spring:
+  application:
+    name: scarlet
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/scarlet?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    hikari:
+      maximum-pool-size: 100
+      minimum-idle: 5
+  servlet:
+    multipart:
+      max-file-size: 2458624KB
+      max-request-size: 2458624KB
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    time-zone: "GMT+8"
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    timeout: 5000
+    lettuce:
+      pool:
+        max-active: 200
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-handlers-package: io.codewar.scarlet.core.model
+
+jwt:
+  secret: TUQ1ICgic2NhcmxldCIpID0gNTQwNjdhNWI3Mzg5MjM0OTdhOTM1NGZkNTdjODQyMWUK
